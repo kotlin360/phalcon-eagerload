@@ -1,22 +1,28 @@
 <?php
 // +----------------------------------------------------------------------
-// | BaseTest.php [ WE CAN DO IT JUST THINK IT ]
+// | SqlCount.php [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace Tests\EagerLoad;
+namespace Tests\App;
 
-use Tests\App\Models\User;
-use Tests\App\SqlCount;
-use Tests\TestCase;
+use Xin\Traits\Common\InstanceTrait;
 
-class BaseTest extends TestCase
+class SqlCount
 {
-    public function testExample()
+    use InstanceTrait;
+
+    public $count = 0;
+
+    public function add()
     {
-        $user = User::findFirst();
-        dd(SqlCount::getInstance()->count);
+        $this->count++;
+    }
+
+    public function flush()
+    {
+        $this->count = 0;
     }
 }
