@@ -14,9 +14,22 @@ use Tests\TestCase;
 
 class BaseTest extends TestCase
 {
-    public function testExample()
+    public function testPhalcon()
     {
-        $user = User::findFirst();
-        dd(SqlCount::getInstance()->count);
+        $this->assertTrue(extension_loaded('phalcon'));
+    }
+
+    public function testFindFirst()
+    {
+        $user = User::findFirst(1);
+        $this->assertEquals('limx', $user->name);
+        $this->assertEquals(1, SqlCount::getInstance()->count);
+    }
+
+    public function testFind()
+    {
+        $users = User::find();
+        $this->assertEquals(2, count($users));
+        $this->assertEquals(1, SqlCount::getInstance()->count);
     }
 }

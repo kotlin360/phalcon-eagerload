@@ -57,7 +57,6 @@ class TestCase extends UnitTestCase
         });
 
         $di->setShared('modelsMetadata', function () {
-
             $modelsMetadata = new MetadataFiles(
                 [
                     'metaDataDir' => __DIR__ . '/../meta/',
