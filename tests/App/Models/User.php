@@ -28,6 +28,10 @@ class User extends \Phalcon\Mvc\Model
     {
         $this->setSchema("eagerload");
         $this->setSource("user");
+        $this->hasMany('id', Book::class, 'user_id', [
+            'alias' => 'book',
+            'reusable' => false,
+        ]);
     }
 
     /**
