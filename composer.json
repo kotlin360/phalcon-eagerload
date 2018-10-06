@@ -1,35 +1,23 @@
 {
-    "name": "limingxinleo/x-phalcon-eagerload",
-    "description": "a phalcon eagerload component",
-    "type": "library",
-    "license": "MIT",
-    "keywords": [
-        "phalcon-eagerload",
-        "phalcon"
-    ],
-    "authors": [
-        {
-            "name": "limingxinleo",
-            "email": "715557344@qq.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Xin\\Phalcon\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
-    "require": {
-        "php": ">=5.6",
-        "ext-phalcon": "^3.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^5.7",
-        "phalcon/dd": "^1.1",
-        "limingxinleo/x-trait-common": "^1.0"
-    }
+	"name": "kotlin360/phalcon-eager-loading",
+	"description": "Solves N+1 query problem in Phalcon Model",
+	"license": "MIT",
+	"autoload": {
+		"psr-4": {
+			"Kotlin360\\Phalcon\\": "src"
+		}
+	},
+	"require": {
+		"php": ">=7.1",
+		"ext-phalcon": "^3.4"
+	},
+	"keywords": [
+		"phalcon"
+	],
+	"authors": [
+		{
+			"name": "phalcon",
+			"homepage": "https://phalconphp.com/"
+		}
+	]
 }
