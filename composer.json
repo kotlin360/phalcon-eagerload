@@ -1,5 +1,5 @@
 {
-	"name": "kotlin360/phalcon-eager-loading",
+	"name": "kotlin360/phalcon-eagerloading",
 	"description": "Solves N+1 query problem in Phalcon Model",
 	"license": "MIT",
 	"autoload": {
