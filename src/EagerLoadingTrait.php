@@ -42,7 +42,7 @@ trait EagerLoadingTrait
 		$ret = static::find($parameters);
 		if ($ret->count()) {
 			array_unshift($arguments, $ret);
-			$ret = call_user_func_array('Phalcon\Mvc\Model\EagerLoading\Loader::fromResultset', $arguments);
+			$ret = call_user_func_array('Kotlin360\Phalcon\EagerLoad\Loader::fromResultset', $arguments);
 		}
 		return $ret;
 	}
@@ -71,7 +71,7 @@ trait EagerLoadingTrait
 		}
 		if ($ret = static::findFirst($parameters)) {
 			array_unshift($arguments, $ret);
-			$ret = call_user_func_array('Phalcon\Mvc\Model\EagerLoading\Loader::fromModel', $arguments);
+			$ret = call_user_func_array('Kotlin360\Phalcon\EagerLoad\Loader::fromModel', $arguments);
 		}
 		return $ret;
 	}
@@ -92,6 +92,6 @@ trait EagerLoadingTrait
 	{
 		$arguments = func_get_args();
 		array_unshift($arguments, $this);
-		return call_user_func_array('Phalcon\Mvc\Model\EagerLoading\Loader::fromModel', $arguments);
+		return call_user_func_array('Kotlin360\Phalcon\EagerLoad\Loader::fromModel', $arguments);
 	}
 }

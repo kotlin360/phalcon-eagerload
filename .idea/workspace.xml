@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ef534722-3730-48d5-ae3c-edb7de5d4756" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EagerLoadingTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EagerLoadingTrait.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,22 +18,22 @@
     <session id="1136867363">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
-          <entry key="project.open.time.0" value="3" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.0" value="4" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="2" />
           <entry key="json" value="8" />
-          <entry key="php" value="41" />
+          <entry key="php" value="46" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Git file" value="2" />
-          <entry key="PHP" value="41" />
+          <entry key="PHP" value="46" />
           <entry key="composer.json" value="8" />
         </counts>
       </usages-collector>
@@ -41,13 +41,13 @@
         <counts>
           <entry key="gitignore" value="3" />
           <entry key="json" value="102" />
-          <entry key="php" value="58" />
+          <entry key="php" value="68" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Git file" value="3" />
-          <entry key="PHP" value="58" />
+          <entry key="PHP" value="68" />
           <entry key="composer.json" value="102" />
         </counts>
       </usages-collector>
@@ -61,10 +61,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/composer.json">
+        <entry file="file://$PROJECT_DIR$/src/EagerLoadingTrait.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="1" column="36" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
+            <state relative-caret-position="502">
+              <caret line="94" column="64" selection-start-line="94" selection-start-column="64" selection-end-line="94" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -80,12 +80,12 @@
         <option value="$PROJECT_DIR$/src/EagerLoad/EagerLoadException.php" />
         <option value="$PROJECT_DIR$/src/EagerLoad.php" />
         <option value="$PROJECT_DIR$/src/EagerLoad/Client.php" />
-        <option value="$PROJECT_DIR$/src/EagerLoadingTrait.php" />
         <option value="$PROJECT_DIR$/src/EagerLoad/EagerLoad.php" />
         <option value="$PROJECT_DIR$/src/EagerLoad/QueryBuilder.php" />
         <option value="$PROJECT_DIR$/src/EagerLoad/Loader.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/src/EagerLoadingTrait.php" />
       </list>
     </option>
   </component>
@@ -113,6 +113,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -135,7 +136,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -178,12 +178,13 @@
       <updated>1538820695404</updated>
       <workItem from="1538820696581" duration="817000" />
       <workItem from="1538822713846" duration="868000" />
-      <workItem from="1538898477659" duration="5000" />
+      <workItem from="1538898477659" duration="488000" />
+      <workItem from="1538904660076" duration="54000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1690000" />
+    <option name="totallyTimeSpent" value="2227000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -260,20 +261,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/EagerLoad/Loader.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-515">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EagerLoadingTrait.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="13" lean-forward="true" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -283,8 +270,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="1" column="36" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
+        <state relative-caret-position="243">
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EagerLoad/Loader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EagerLoadingTrait.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="94" column="64" selection-start-line="94" selection-start-column="64" selection-end-line="94" selection-end-column="64" />
         </state>
       </provider>
     </entry>
