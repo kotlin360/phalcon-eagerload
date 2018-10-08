@@ -1,8 +1,6 @@
 <?php
 namespace Kotlin360\Phalcon;
 
-use Phalcon\Mvc\Model\EagerLoad\Loader;
-
 trait EagerLoadingTrait
 {
 	/**
@@ -32,9 +30,6 @@ trait EagerLoadingTrait
 			if ($numArgs >= 2 && is_array($arguments[$lastArg])) {
 				$parameters = $arguments[$lastArg];
 				unset($arguments[$lastArg]);
-				if (isset($parameters['columns'])) {
-					throw new \LogicException('Results from database must be full models, do not use `columns` key');
-				}
 			}
 		} else {
 			throw new \BadMethodCallException(sprintf('%s requires at least one argument', __METHOD__));
@@ -62,9 +57,6 @@ trait EagerLoadingTrait
 			if ($numArgs >= 2 && is_array($arguments[$lastArg])) {
 				$parameters = $arguments[$lastArg];
 				unset($arguments[$lastArg]);
-				if (isset($parameters['columns'])) {
-					throw new \LogicException('Results from database must be full models, do not use `columns` key');
-				}
 			}
 		} else {
 			throw new \BadMethodCallException(sprintf('%s requires at least one argument', __METHOD__));
