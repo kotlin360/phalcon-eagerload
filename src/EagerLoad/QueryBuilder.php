@@ -13,6 +13,7 @@ final class QueryBuilder extends Builder
 		throw new \LogicException(static::E_NOT_ALLOWED_METHOD_CALL);
 	}
 
+	// 去掉重写where的方法 2018年11月14日17:01:43
 //	public function where($conditions, $bindParams = null, $bindTypes = null)
 //	{
 //		$currentConditions = $this->_conditions;
