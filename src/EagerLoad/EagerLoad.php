@@ -27,7 +27,7 @@ final class EagerLoad
 	 * @param null|callable    $constraints
 	 * @param Loader|EagerLoad $parent
 	 */
-	public function __construct(Relation $relation, $constraints, $parent)
+	public function __construct (Relation $relation, $constraints, $parent)
 	{
 		if (static::$isPhalcon2 === null) {
 			static::$isPhalcon2 = version_compare(Version::get(), '2.0.0') >= 0;
@@ -41,7 +41,7 @@ final class EagerLoad
 	/**
 	 * @return null|\Phalcon\Mvc\ModelInterface[]
 	 */
-	public function getSubject()
+	public function getSubject ()
 	{
 		return $this->subject;
 	}
@@ -53,7 +53,7 @@ final class EagerLoad
 	 * Also {@see https://github.com/stibiumz/phalcon.eager-loading/issues/1}
 	 * @return $this
 	 */
-	public function load()
+	public function load ()
 	{
 		$parentSubject = $this->parent->getSubject();
 
@@ -64,6 +64,7 @@ final class EagerLoad
 		$relation = $this->relation;
 
 		$alias                = $relation->getOptions();
+		$conditions           = $alias['conditions'];
 		$alias                = strtolower($alias['alias']);
 		$relField             = $relation->getFields();
 		$relReferencedModel   = $relation->getReferencedModel();
@@ -79,7 +80,7 @@ final class EagerLoad
 
 		$bindValues = [];
 
-		foreach($parentSubject as $record) {
+		foreach ($parentSubject as $record) {
 			$bindValues[$record->readAttribute($relField)] = true;
 		}
 
@@ -121,7 +122,7 @@ final class EagerLoad
 
 				$bindValues = $modelReferencedModelValues = [];
 
-				foreach($relIrValues as $row) {
+				foreach ($relIrValues as $row) {
 					$bindValues[$row[$relIrReferencedField]]                                    = true;
 					$modelReferencedModelValues[$row[$relIrField]][$row[$relIrReferencedField]] = true;
 				}
@@ -131,7 +132,12 @@ final class EagerLoad
 				$builder->inWhere("[{$relReferencedField}]", array_keys($bindValues));
 			}
 		} else {
-			$builder->inWhere("[{$relReferencedField}]", $bindValues);
+			if ($conditions) {
+				$builder->andWhere($conditions)->inWhere("[{$relReferencedField}]", $bindValues);
+			} else {
+				$builder->inWhere("[{$relReferencedField}]", $bindValues);
+			}
+
 		}
 
 		if ($this->constraints) {
@@ -141,17 +147,17 @@ final class EagerLoad
 		$records = [];
 
 		if ($isManyToManyForMany) {
-			foreach($builder->getQuery()->execute() as $record) {
+			foreach ($builder->getQuery()->execute() as $record) {
 				$records[$record->readAttribute($relReferencedField)] = $record;
 			}
 
-			foreach($parentSubject as $record) {
+			foreach ($parentSubject as $record) {
 				$referencedFieldValue = $record->readAttribute($relField);
 
 				if (isset($modelReferencedModelValues[$referencedFieldValue])) {
 					$referencedModels = [];
 
-					foreach($modelReferencedModelValues[$referencedFieldValue] as $idx => $_) {
+					foreach ($modelReferencedModelValues[$referencedFieldValue] as $idx => $_) {
 						$referencedModels[] = $records[$idx];
 					}
 
@@ -177,7 +183,7 @@ final class EagerLoad
 
 			if ($subjectSize === 1) {
 				// Keep all records in memory
-				foreach($builder->getQuery()->execute() as $record) {
+				foreach ($builder->getQuery()->execute() as $record) {
 					$records[] = $record;
 				}
 
@@ -202,7 +208,7 @@ final class EagerLoad
 				$indexedRecords = [];
 
 				// Keep all records in memory
-				foreach($builder->getQuery()->execute() as $record) {
+				foreach ($builder->getQuery()->execute() as $record) {
 					$records[] = $record;
 
 					if ($isSingle) {
@@ -212,7 +218,7 @@ final class EagerLoad
 					}
 				}
 
-				foreach($parentSubject as $record) {
+				foreach ($parentSubject as $record) {
 					$referencedFieldValue = $record->readAttribute($relField);
 
 					if (isset($indexedRecords[$referencedFieldValue])) {
