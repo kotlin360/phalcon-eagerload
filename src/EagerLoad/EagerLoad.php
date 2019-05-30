@@ -69,6 +69,7 @@ final class EagerLoad
 		} else {
 			$conditions = '';
 		}
+		$columns              = $alias['columns'] ?? '*';
 		$alias                = strtolower($alias['alias']);
 		$relField             = $relation->getFields();
 		$relReferencedModel   = $relation->getReferencedModel();
@@ -137,11 +138,11 @@ final class EagerLoad
 			}
 		} else {
 			if ($conditions) {
-				$builder->andWhere($conditions)->inWhere("[{$relReferencedField}]", $bindValues);
+				$builder->andWhere($conditions)
+					->inWhere("[{$relReferencedField}]", $bindValues)->columns($columns);
 			} else {
-				$builder->inWhere("[{$relReferencedField}]", $bindValues);
+				$builder->inWhere("[{$relReferencedField}]", $bindValues)->columns($columns);
 			}
-
 		}
 
 		if ($this->constraints) {
