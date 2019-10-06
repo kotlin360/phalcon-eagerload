@@ -63,12 +63,12 @@ final class EagerLoad
 
 		$relation = $this->relation;
 
-		$alias = $relation->getOptions();
-		if (isset($alias['conditions']) && $alias['conditions']) {
-			$conditions = $alias['conditions'];
-		} else {
-			$conditions = '';
-		}
+		$alias      = $relation->getOptions();
+		$conditions = '';
+		$lastWhere  = '';
+		if (isset($alias['conditions']) && $alias['conditions']) $conditions = $alias['conditions'];
+		if (isset($alias['lastWhere']) && $alias['lastWhere']) $lastWhere = $alias['lastWhere'];
+
 		$columns              = $alias['columns'] ?? '*';
 		$alias                = strtolower($alias['alias']);
 		$relField             = $relation->getFields();
@@ -138,10 +138,29 @@ final class EagerLoad
 			}
 		} else {
 			if ($conditions) {
-				$builder->andWhere($conditions)
-					->inWhere("[{$relReferencedField}]", $bindValues)->columns($columns);
+				if ($lastWhere) {
+					$builder
+						->andWhere($conditions)
+						->inWhere("[{$relReferencedField}]", $bindValues)
+						->andWhere($lastWhere)
+						->columns($columns);
+				} else {
+					$builder
+						->andWhere($conditions)
+						->inWhere("[{$relReferencedField}]", $bindValues)
+						->columns($columns);
+				}
 			} else {
-				$builder->inWhere("[{$relReferencedField}]", $bindValues)->columns($columns);
+				if ($lastWhere) {
+					$builder
+						->inWhere("[{$relReferencedField}]", $bindValues)
+						->andWhere($lastWhere)
+						->columns($columns);
+				} else {
+					$builder
+						->inWhere("[{$relReferencedField}]", $bindValues)
+						->columns($columns);
+				}
 			}
 		}
 
