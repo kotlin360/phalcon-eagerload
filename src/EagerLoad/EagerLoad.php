@@ -61,16 +61,17 @@ final class EagerLoad
 			return $this;
 		}
 
-		$relation = $this->relation;
-
-		$alias      = $relation->getOptions();
+		$relation   = $this->relation;
+		$options    = $relation->getOptions();
 		$conditions = '';
 		$lastWhere  = '';
-		if (isset($alias['conditions']) && $alias['conditions']) $conditions = $alias['conditions'];
-		if (isset($alias['lastWhere']) && $alias['lastWhere']) $lastWhere = $alias['lastWhere'];
+		$limit      = '';
+		if (isset($options['conditions']) && $options['conditions']) $conditions = $options['conditions'];
+		if (isset($options['lastWhere']) && $options['lastWhere']) $lastWhere = $options['lastWhere'];
+		if (isset($options['limit']) && $options['limit']) $limit = $options['lastWhere'];
 
-		$columns              = $alias['columns'] ?? '*';
-		$alias                = strtolower($alias['alias']);
+		$columns              = $options['columns'] ?? '*';
+		$alias                = strtolower($options['alias']);
 		$relField             = $relation->getFields();
 		$relReferencedModel   = $relation->getReferencedModel();
 		$relReferencedField   = $relation->getReferencedFields();
@@ -138,30 +139,37 @@ final class EagerLoad
 			}
 		} else {
 			if ($conditions) {
-				if ($lastWhere) {
-					$builder
-						->andWhere($conditions)
-						->inWhere("[{$relReferencedField}]", $bindValues)
-						->andWhere($lastWhere)
-						->columns($columns);
-				} else {
-					$builder
-						->andWhere($conditions)
-						->inWhere("[{$relReferencedField}]", $bindValues)
-						->columns($columns);
-				}
-			} else {
-				if ($lastWhere) {
-					$builder
-						->inWhere("[{$relReferencedField}]", $bindValues)
-						->andWhere($lastWhere)
-						->columns($columns);
-				} else {
-					$builder
-						->inWhere("[{$relReferencedField}]", $bindValues)
-						->columns($columns);
-				}
+				$builder->andWhere($conditions);
 			}
+			$builder->inWhere("[{$relReferencedField}]", $bindValues);
+			if ($lastWhere) $builder->andWhere($lastWhere);
+			if ($limit) $builder->limit($limit);
+			$builder->columns($columns);
+//			if ($conditions) {
+//				if ($lastWhere) {
+//					$builder
+//						->andWhere($conditions)
+//						->inWhere("[{$relReferencedField}]", $bindValues)
+//						->andWhere($lastWhere)
+//						->columns($columns);
+//				} else {
+//					$builder
+//						->andWhere($conditions)
+//						->inWhere("[{$relReferencedField}]", $bindValues)
+//						->columns($columns);
+//				}
+//			} else {
+//				if ($lastWhere) {
+//					$builder
+//						->inWhere("[{$relReferencedField}]", $bindValues)
+//						->andWhere($lastWhere)
+//						->columns($columns);
+//				} else {
+//					$builder
+//						->inWhere("[{$relReferencedField}]", $bindValues)
+//						->columns($columns);
+//				}
+//			}
 		}
 
 		if ($this->constraints) {
