@@ -63,10 +63,10 @@ final class EagerLoad
 
 		$relation   = $this->relation;
 		$options    = $relation->getOptions();
-		$conditions = '';
+		$firstWhere = '';
 		$lastWhere  = '';
 		$limit      = '';
-		if (isset($options['conditions']) && $options['conditions']) $conditions = $options['conditions'];
+		if (isset($options['firstWhere']) && $options['firstWhere']) $firstWhere = $options['firstWhere'];
 		if (isset($options['lastWhere']) && $options['lastWhere']) $lastWhere = $options['lastWhere'];
 		if (isset($options['limit']) && $options['limit']) $limit = $options['lastWhere'];
 
@@ -138,38 +138,12 @@ final class EagerLoad
 				$builder->inWhere("[{$relReferencedField}]", array_keys($bindValues));
 			}
 		} else {
-			if ($conditions) {
-				$builder->andWhere($conditions);
-			}
+			// 根据不同的条件构造Builder
+			if ($firstWhere) $builder->andWhere($firstWhere);
 			$builder->inWhere("[{$relReferencedField}]", $bindValues);
 			if ($lastWhere) $builder->andWhere($lastWhere);
 			if ($limit) $builder->limit($limit);
 			$builder->columns($columns);
-//			if ($conditions) {
-//				if ($lastWhere) {
-//					$builder
-//						->andWhere($conditions)
-//						->inWhere("[{$relReferencedField}]", $bindValues)
-//						->andWhere($lastWhere)
-//						->columns($columns);
-//				} else {
-//					$builder
-//						->andWhere($conditions)
-//						->inWhere("[{$relReferencedField}]", $bindValues)
-//						->columns($columns);
-//				}
-//			} else {
-//				if ($lastWhere) {
-//					$builder
-//						->inWhere("[{$relReferencedField}]", $bindValues)
-//						->andWhere($lastWhere)
-//						->columns($columns);
-//				} else {
-//					$builder
-//						->inWhere("[{$relReferencedField}]", $bindValues)
-//						->columns($columns);
-//				}
-//			}
 		}
 
 		if ($this->constraints) {
