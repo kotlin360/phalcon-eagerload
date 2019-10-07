@@ -139,10 +139,10 @@ final class EagerLoad
 			}
 		} else {
 			// 根据不同的条件构造Builder
-			if ($firstWhere) $builder->andWhere($firstWhere);
+			$firstWhere && $builder->andWhere($firstWhere);
 			$builder->inWhere("[{$relReferencedField}]", $bindValues);
-			if ($lastWhere) $builder->andWhere($lastWhere);
-			if ($limit) $builder->limit($limit);
+			$lastWhere && $builder->andWhere($lastWhere);
+			$limit && $builder->limit($limit);
 			$builder->columns($columns);
 		}
 
