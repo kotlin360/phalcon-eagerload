@@ -68,7 +68,7 @@ final class EagerLoad
 		$limit      = '';
 		if (isset($options['firstWhere']) && $options['firstWhere']) $firstWhere = $options['firstWhere'];
 		if (isset($options['lastWhere']) && $options['lastWhere']) $lastWhere = $options['lastWhere'];
-		if (isset($options['limit']) && $options['limit']) $limit = $options['lastWhere'];
+		if (isset($options['limit']) && $options['limit']) $limit = $options['limit'];
 
 		$columns              = $options['columns'] ?? '*';
 		$alias                = strtolower($options['alias']);
