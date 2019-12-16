@@ -66,6 +66,7 @@ final class EagerLoad
 		$firstWhere = '';
 		$lastWhere  = '';
 		$limit      = '';
+		$group      = $options['group'] ?? '';
 		if (isset($options['firstWhere']) && $options['firstWhere']) $firstWhere = $options['firstWhere'];
 		if (isset($options['lastWhere']) && $options['lastWhere']) $lastWhere = $options['lastWhere'];
 		if (isset($options['limit']) && $options['limit']) $limit = $options['limit'];
@@ -143,6 +144,7 @@ final class EagerLoad
 			$builder->inWhere("[{$relReferencedField}]", $bindValues);
 			$lastWhere && $builder->andWhere($lastWhere);
 			$limit && $builder->limit($limit);
+			$group && $builder->groupBy($group);
 			$builder->columns($columns);
 		}
 
