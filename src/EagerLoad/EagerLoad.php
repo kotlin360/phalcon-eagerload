@@ -63,13 +63,10 @@ final class EagerLoad
 
 		$relation   = $this->relation;
 		$options    = $relation->getOptions();
-		$firstWhere = '';
-		$lastWhere  = '';
-		$limit      = '';
+		$firstWhere = $options['firstWhere'] ?? '';
+		$lastWhere  = $options['lastWhere'] ?? '';
+		$limit      = $options['limit'] ?? '';
 		$group      = $options['group'] ?? '';
-		if (isset($options['firstWhere']) && $options['firstWhere']) $firstWhere = $options['firstWhere'];
-		if (isset($options['lastWhere']) && $options['lastWhere']) $lastWhere = $options['lastWhere'];
-		if (isset($options['limit']) && $options['limit']) $limit = $options['limit'];
 
 		$columns              = $options['columns'] ?? '*';
 		$alias                = strtolower($options['alias']);
